@@ -69,7 +69,7 @@ export const updateNote = async (req, res, next) => {
   try {
     const { noteId } = req.params;
     const note = await Note.findByIdAndUpdate(noteId, req.body, {
-      new: true,
+      returnDocument: 'after',
     });
 
     if (!note) {
@@ -81,6 +81,7 @@ export const updateNote = async (req, res, next) => {
     next(error);
   }
 };
+
 
 export const deleteNote = async (req, res, next) => {
   try {
